@@ -36,4 +36,6 @@ Currently, two official plugins are available:
 -move gitignore to root folder.
 
 # Connect server to database
+
 -install mongoose
+# Creating a middleware and a function to handle errors
