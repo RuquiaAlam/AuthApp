@@ -38,4 +38,7 @@ Currently, two official plugins are available:
 # Connect server to database
 
 -install mongoose
+
 # Creating a middleware and a function to handle errors
+
+# Complete sign up page UI
