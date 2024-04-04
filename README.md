@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 
 # Using Vite
 
--npm Create vite@latest client
+-npm create vite@latest client
 
 -Install React js and TailwindCSS
 -Configure Github
@@ -42,3 +42,8 @@ Currently, two official plugins are available:
 # Creating a middleware and a function to handle errors
 
 # Complete sign up page UI
+
+# Create Sign In in API route
+
+# create jsonwebtoken
+# npm i jsonwebtoken
