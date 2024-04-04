@@ -46,4 +46,7 @@ Currently, two official plugins are available:
 # Create Sign In in API route
 
 # create jsonwebtoken
+
 # npm i jsonwebtoken
+
+# Complete the Sign in page
