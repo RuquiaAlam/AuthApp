@@ -50,3 +50,10 @@ Currently, two official plugins are available:
 # npm i jsonwebtoken
 
 # Complete the Sign in page
+
+# Add redux toolkit
+
+-npm install @reduxjs/toolkit react-redux
+-npm i react-redux
+//persistant data
+npm i redux-persist

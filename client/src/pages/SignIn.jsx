@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SignIp() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const { loading, error } = useSelector((state) => state.user);
+  console.log(error);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     //prevent refreshing the page when we submit the form
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -21,17 +29,19 @@ export default function SignIp() {
       });
       const data = await res.json();
 
-      setLoading(false);
+      // setLoading(false);
+
       if (data.success == false) {
-        setError(true);
+        dispatch(signInFailure(data));
+        // setError(true);
         return;
       }
+      dispatch(signInSuccess(data));
       navigate("/");
-
-
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      dispatch(signInFailure(error));
+      // setLoading(false);
+      // setError(true);
     }
   };
   const handleChange = (e) => {
@@ -60,16 +70,18 @@ export default function SignIp() {
           disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading" : "Sign In"}
+          {loading ? "Loading..." : "Sign In"}
         </button>
       </form>
       <div className="flex gap-2 mt-5">
-        <p>Dont have an account ?</p>
+        <p>Don't have an account ?</p>
         <Link to="/sign-up">
           <span className="text-blue-500">Sign up</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error && "Something went wrong!"}</p>
+      <p className="text-red-600 mt-5">
+        {error ? error.message || "Something went wrong!" : ""}
+      </p>
     </div>
   );
 }
